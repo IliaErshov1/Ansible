@@ -1,0 +1,13 @@
+- name: Task1
+  hosts: node1.example.com node2.example.com
+  vars_files:
+   - users2_1.yml 
+  tasks:
+  - name: Creating users
+    user: 
+      name: "{{item.username}}"
+      comment: "{{item.username}}@example.com"
+      create_home: true
+      update_password: on_create
+      password: "{{ 'password' | password_hash('sha512') }}"
+    with_items: "{{ users }}" 
