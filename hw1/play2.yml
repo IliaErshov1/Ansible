@@ -1,0 +1,24 @@
+- name: Task2
+  hosts: node1.example.com node2.example.com
+  tasks:
+  - name: Uninstall httpd
+    package: 
+      name: httpd
+      state: absent
+
+  - name: Disable firewalld 80 port
+    firewalld:
+      service: http
+      permanent: true
+      state: disabled 
+
+  - name: Restart firewall
+    service:
+      name: firewalld
+      state: restarted
+
+  - name: Remove File
+    file:
+      path: /var/www/html/index.html
+      state: absent
+     
