@@ -1,0 +1,44 @@
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+  
+# Setup/install tasks.
+- include_tasks: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Add firewalld_80
+  firewalld:
+    service: http
+    permanent: yes
+    state: enabled 
+
+- name: Restart firewall
+  service:
+    name: firewalld
+    state: restarted
+
+- name: Created File
+  copy:
+    content: "Welcome to my web server"
+    dest: /var/www/html/index.html 
+    owner: ansible
+    group: ansible
+
+- name: Start httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Get status httpd
+  command: systemctl is-active httpd
+  ignore_errors: yes
+  register: result_httpd
+
+- name: See status httpd
+  debug: var=result_httpd  
+ 
+- name: Ensure httpd service is running as configured.
+  service:
+    name: httpd
+    state: "{{ httpd_service_state }}"
+    enabled: "{{ httpd_service_enabled }}"

@@ -1,0 +1,5 @@
+- name:  http
+  hosts: node1.example.com
+  
+  roles:
+    - role: task1.http

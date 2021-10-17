@@ -1,0 +1,4 @@
+- name: Ensure vsftpd is installed.
+  package:
+    name: "{{ vsftpd_package_name }}"
+    state: present

@@ -1,0 +1,25 @@
+vsftpd_package_name: "vsftpd"
+semanage_package_name: "policycoreutils-python-utils"
+
+vsftpd_service_state: started
+vsftpd_service_enabled: true
+
+vsftpd_conf_template: "vsftpd.conf.j2"
+
+vsftpd_listen: "yes"
+vsftpd_background: "yes"
+vsftpd_anonymous_enable: "yes"
+vsftpd_anon_root: "/var/ftp/pub"
+vsftpd_anon_upload_enable: "yes"
+vsftpd_anon_mkdir_write_enable: "yes"
+vsftpd_anon_other_write_enable: "yes"
+vsftpd_xferlog_enable: "yes"
+vsftpd_xferlog_file: "/var/log/vsftpd.log"
+vsftpd_chroot_local_user: "yes"
+vsftpd_no_anon_password: "yes"
+vsftpd_local_enable: "yes"
+vsftpd_write_enable: "yes"
+vsftpd_local_umask: "22"
+vsftpd_hide_ids: "yes"
+vsftpd_chroot_list_enable: "no"
+vsftpd_ascii_upload_enable: "yes"

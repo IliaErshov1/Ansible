@@ -1,0 +1,4 @@
+httpd_package_name: "httpd"
+
+httpd_service_state: started
+httpd_service_enabled: true

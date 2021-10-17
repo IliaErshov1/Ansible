@@ -1,0 +1,2 @@
+root_group: root
+vsftpd_conf_file_path: /etc/vsftpd/vsftpd.conf

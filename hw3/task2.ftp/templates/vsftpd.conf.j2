@@ -1,0 +1,37 @@
+# Start server as a service
+listen={{vsftpd_listen}}
+
+# Background working
+background={{vsftpd_background}}
+
+# Enable anonymous users connect
+anonymous_enable={{vsftpd_anonymous_enable}}
+
+# Non-password for anonymous
+no_anon_password={{vsftpd_no_anon_password}}
+
+# Home directory for anonymous users
+anon_root={{vsftpd_anon_root}}
+
+# Allow anonymous upload to upload folder
+anon_upload_enable={{vsftpd_anon_upload_enable}}
+anon_mkdir_write_enable={{vsftpd_anon_mkdir_write_enable}}
+anon_other_write_enable={{vsftpd_anon_other_write_enable}}
+anon_umask=000
+
+# Access and RW rights in home directory for local users
+local_enable={{vsftpd_local_enable}}
+write_enable={{vsftpd_write_enable}}
+#local_umask={{vsftpd_local_umask}}
+hide_ids={{vsftpd_hide_ids}}
+
+# Log enable
+xferlog_enable={{vsftpd_xferlog_enable}}
+
+# Log folder
+xferlog_file={{vsftpd_xferlog_file}}
+
+# Local users cannot leave home folder
+chroot_local_user={{vsftpd_chroot_local_user}}
+chroot_list_enable={{vsftpd_chroot_list_enable}}
+ascii_upload_enable={{vsftpd_ascii_upload_enable}}
