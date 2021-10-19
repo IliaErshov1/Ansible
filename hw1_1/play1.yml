@@ -1,0 +1,39 @@
+- name: Task1
+  hosts: 192.168.56.111
+  tasks:
+  - name: Install httpd package
+    yum:
+      name: httpd
+      state: latest
+
+  - name: Add firewalld_80
+    firewalld:
+      service: http
+      permanent: yes
+      state: enabled 
+
+  - name: Restart firewall
+    service:
+      name: firewalld
+      state: restarted
+
+  - name: Created File
+    copy:
+      content: "Welcome to my web server"
+      dest: /var/www/html/index.html 
+      owner: ansible
+      group: ansible
+
+  - name: Start httpd
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+
+  - name: Get status httpd
+    command: systemctl is-active httpd
+    ignore_errors: yes
+    register: result_httpd
+
+  - name: See status httpd
+    debug: var=result_httpd     

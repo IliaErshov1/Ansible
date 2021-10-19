@@ -1,0 +1,16 @@
+- name: Task3
+  hosts: 192.168.56.111
+  tasks:
+  - name: Grub file
+    lineinfile:
+      state: present
+      dest: /etc/default/grub
+      backrefs: yes
+      regexp: ^(GRUB_CMDLINE_LINUX=(?!.* {{item}})\"[^\"]+)(\".*)
+      line: '\1 {{item}}=0\2'
+    loop:
+      - "biosdevname"
+      - "net.ifnames"
+            
+  - name: Change grub
+    command: grub2-mkconfig
